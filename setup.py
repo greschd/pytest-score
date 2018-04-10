@@ -26,7 +26,7 @@ setup(
     python_requires='>=3.5',
     install_requires=['pytest>=3.1.1'],
     extras_require={
-        'dev': ['sphinx']
+        'dev': ['sphinx', 'pytest', 'tox']
     },
     classifiers=[
         'Development Status :: 3 - Alpha',

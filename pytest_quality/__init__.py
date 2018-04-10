@@ -6,16 +6,12 @@ import pytest
 def pytest_addoption(parser):
     group = parser.getgroup('quality')
     group.addoption(
-        '--foo',
-        action='store',
-        dest='dest_foo',
-        default='2018',
-        help='Set the value for the fixture "bar".'
+        '--strict-quality',
+        action='store_true',
+        dest='dest_strict_quality',
+        help='Disallow quality criteria without a cut-off threshold.'
     )
-
-    parser.addini('HELLO', 'Dummy pytest.ini setting')
-
 
 @pytest.fixture
 def bar(request):
-    return request.config.option.dest_foo
+    return request.config.option.dest_strict_quality
