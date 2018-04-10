@@ -21,7 +21,7 @@ setup(
     license='GNU GPL v3.0',
     url='https://github.com/greschd/pytest-quality',
     description='A plugin to run quality (non-binary) tests with pytest.',
-    long_description=read('README.rst'),
+    long_description=read('README.md'),
     packages=find_packages(),
     python_requires='>=3.5',
     install_requires=['pytest>=3.1.1'],
