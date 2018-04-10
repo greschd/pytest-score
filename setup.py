@@ -13,7 +13,7 @@ def read(fname):
 
 setup(
     name='pytest-quality',
-    version='0.1.0',
+    version='0.1.0a1',
     author='Dominik Gresch',
     author_email='greschd@gmx.ch',
     maintainer='Dominik Gresch',
@@ -22,7 +22,7 @@ setup(
     url='https://github.com/greschd/pytest-quality',
     description='A plugin to run quality (non-binary) tests with pytest.',
     long_description=read('README.rst'),
-    pagackes=find_packages(),
+    packages=find_packages(),
     python_requires='>=3.5',
     install_requires=['pytest>=3.1.1'],
     extras_require={
