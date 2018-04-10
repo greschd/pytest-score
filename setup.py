@@ -1,10 +1,9 @@
-
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 import os
 import codecs
-from setuptools import setup
+from setuptools import setup, find_packages
 
 
 def read(fname):
@@ -23,11 +22,14 @@ setup(
     url='https://github.com/greschd/pytest-quality',
     description='A plugin to run quality (non-binary) tests with pytest.',
     long_description=read('README.rst'),
-    py_modules=['pytest_quality'],
+    pagackes=find_packages(),
     python_requires='>=3.5',
     install_requires=['pytest>=3.1.1'],
+    extras_require={
+        'dev': ['sphinx']
+    },
     classifiers=[
-        'Development Status :: 4 - Beta',
+        'Development Status :: 3 - Alpha',
         'Framework :: Pytest',
         'Intended Audience :: Developers',
         'Topic :: Software Development :: Testing',
