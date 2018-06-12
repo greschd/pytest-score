@@ -2,19 +2,17 @@
 
 from contextlib import contextmanager
 
-import yaml
+import json
 
 import pytest
 
 from ._score import ScoreSheet
-
-#
-# def pytest_addoption(parser):
-#     group = parser.getgroup('score')
+from ._serialize import encode, decode
 
 @pytest.fixture(scope='session')
 def score_sheet(request):
     with _store_score(save_file=_get_save_file(request)) as score_sheet:
+        score_sheet.rotate()
         yield score_sheet
 
 @pytest.fixture
@@ -34,11 +32,13 @@ def _get_save_file(request):
 def _store_score(save_file):
     try:
         with open(save_file, 'r') as in_file:
-            score_sheet = yaml.load(in_file)
-    except (IOError, yaml.parser.ParserError):
+            score_sheet = json.load(in_file, object_hook=decode)
+    except (IOError, json.decoder.JSONDecodeError):
+        score_sheet = ScoreSheet()
+    if not isinstance(score_sheet, ScoreSheet):
         score_sheet = ScoreSheet()
 
     yield score_sheet
 
     with open(save_file, 'w') as out_file:
-        yaml.dump(score_sheet, out_file)
+        json.dump(score_sheet, out_file, default=encode)

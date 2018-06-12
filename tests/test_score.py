@@ -23,5 +23,5 @@
 #     # make sure that that we get a '0' exit code for the testsuite
 #     assert result.ret == 0
 
-def test_score(score):
-    print(score)
+def test_score(score, score_sheet):
+    score(1., tag='bla')
