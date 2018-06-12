@@ -12,14 +12,14 @@ def read(fname):
 
 
 setup(
-    name='pytest-quality',
+    name='pytest-score',
     version='0.1.0a1',
     author='Dominik Gresch',
     author_email='greschd@gmx.ch',
     maintainer='Dominik Gresch',
     maintainer_email='greschd@gmx.ch',
     license='GNU GPL v3.0',
-    url='https://github.com/greschd/pytest-quality',
+    url='https://github.com/greschd/pytest-score',
     description='A plugin to run quality (non-binary) tests with pytest.',
     long_description=read('README.md'),
     packages=find_packages(),
@@ -44,7 +44,7 @@ setup(
     ],
     entry_points={
         'pytest11': [
-            'quality = pytest_quality',
+            'score = pytest_score',
         ],
     },
 )

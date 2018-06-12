@@ -12,7 +12,7 @@ def test_bar_fixture(testdir):
 
     # run pytest with the following cmd args
     result = testdir.runpytest(
-        '--strict-quality',
+        '--strict-score',
         '-v'
     )
 
@@ -31,6 +31,6 @@ def test_help_message(testdir):
     )
     # fnmatch_lines does an assertion internally
     result.stdout.fnmatch_lines([
-        'quality:',
-        '*--strict-quality*Disallow quality criteria without a cut-off threshold.',
+        'score:',
+        '*--strict-score*Disallow scores without a cut-off threshold.',
     ])

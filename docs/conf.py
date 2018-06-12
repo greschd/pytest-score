@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# pytest-quality documentation build configuration file, created by
+# pytest-score documentation build configuration file, created by
 # sphinx-quickstart on Thu Oct  1 00:43:18 2015.
 #
 # This file is execfile()d with the current directory set to its
@@ -48,7 +48,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'pytest-quality'
+project = u'pytest-score'
 copyright = u'2015, Dominik Gresch'
 author = u'Dominik Gresch'
 
@@ -254,7 +254,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'pytest-cookiecutterplugin_name', u'pytest-quality Documentation',
+    (master_doc, 'pytest-cookiecutterplugin_name', u'pytest-score Documentation',
      [author], 1)
 ]
 
@@ -268,7 +268,7 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-  (master_doc, 'pytest-cookiecutterplugin_name', u'pytest-quality Documentation',
+  (master_doc, 'pytest-cookiecutterplugin_name', u'pytest-score Documentation',
    author, 'pytest-cookiecutterplugin_name', 'One line description of project.',
    'Miscellaneous'),
 ]
