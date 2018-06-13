@@ -1,5 +1,6 @@
 include LICENSE
 include README.rst
+include pytest_score/templates/*
 
 recursive-exclude * __pycache__
 recursive-exclude * *.py[co]

@@ -28,6 +28,8 @@ setup(
     description='A plugin to run quality (non-binary) tests with pytest.',
     long_description=read('README.md'),
     packages=find_packages(),
+    include_package_data=True,
+    package_data={'pytest_score': ['templates/*']},
     python_requires='>=3.5',
     install_requires=['pytest>=3.1.1', 'fsc.export', 'py', 'jinja2'],
     extras_require={
