@@ -47,7 +47,8 @@ class HTMLScoreReporter:
         """
         Method which is called pytest at the end of the session.
         """
-        self._save_html(session._score_sheet_instance)  # pylint: disable=protected-access
+        if hasattr(session, '_score_sheet_instance'):
+            self._save_html(session._score_sheet_instance)  # pylint: disable=protected-access
 
     def _save_html(self, score_sheet):
         """
@@ -116,4 +117,5 @@ class TerminalScoreReporter:
         """
         Method which is called pytest at the end of the session.
         """
-        self._write_report(session._score_sheet_instance)  # pylint: disable=protected-access
+        if hasattr(session, '_score_sheet_instance'):
+            self._write_report(session._score_sheet_instance)  # pylint: disable=protected-access
