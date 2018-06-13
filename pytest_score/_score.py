@@ -31,6 +31,19 @@ class ScoreSheet:
     def add_score(self, value, *, test_name, tag):
         self._scores[test_name][tag].add_score(value)
 
+    def create_table(self):
+        header = ('Test name', 'Current', 'Last', 'Best')
+        res = []
+        for test_name, test_name_result in self._scores.items():
+            for tag, tag_result in test_name_result.items():
+                res.append((
+                    test_name + ':' + tag,
+                    tag_result.current,
+                    tag_result.last,
+                    tag_result.best,
+                ))
+        return header, res
+
 
 class ScoreResult:
     def __init__(self, *, history_length=5):
@@ -56,7 +69,10 @@ class ScoreResult:
 
     @property
     def last(self):
-        return self._history[0]
+        try:
+            return self._history[0]
+        except IndexError:
+            return None
 
     def add_score(self, value):
         assert self.current is None, "Cannot assign a score for the same test and tag twice."

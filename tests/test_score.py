@@ -24,4 +24,5 @@
 
 
 def test_score(score, score_sheet):
-    score(1., tag='bla')
+    score(1., tag='test')
+    score(2., tag='test2')
