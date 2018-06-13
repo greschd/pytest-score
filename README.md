@@ -5,16 +5,9 @@ A plugin to run scoring (non-binary) tests with pytest.
 
 
 ## Features
-* TODO
+The plugin provides a fixture ``score`` which can be used to score the result of a test. The plugin creates HTML and terminal output.
 
-## Installation
-You can install ``pytest-score`` via [pip](https://pypi.org/project/pip/) from [PyPI](https://pypi.org):
-```
-    $ pip install pytest-score
-```
-
-## Usage
-* TODO
+Note that the plugin is in a very early state, meaning that some features are still missing. In particular, configuration options (e.g. for choosing the type of output) have not yet been implemented.
 
 ## Contributing
 Contributions are very welcome. Please ensure the test coverage at least stays the same before you submit a pull request.
