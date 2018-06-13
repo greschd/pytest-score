@@ -1,9 +1,14 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import re
 import os
 import codecs
 from setuptools import setup, find_packages
+
+with open('./pytest_score/__init__.py', 'r') as f:
+    MATCH_EXPR = "__version__[^'\"]+(['\"])([^'\"]+)"
+    VERSION = re.search(MATCH_EXPR, f.read()).group(2).strip()
 
 
 def read(fname):
@@ -13,7 +18,7 @@ def read(fname):
 
 setup(
     name='pytest-score',
-    version='0.1.0a1',
+    version=VERSION,
     author='Dominik Gresch',
     author_email='greschd@gmx.ch',
     maintainer='Dominik Gresch',
