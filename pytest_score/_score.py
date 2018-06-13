@@ -1,7 +1,18 @@
+"""
+Defines the container classes for storing the state of the scores.
+"""
+
+
+from enum import Enum
 from collections import defaultdict, deque
 
 
+
+
 class ScoreSheet:
+    """
+    Container for the state of all scores.
+    """
     def __init__(self, *, history_length=5):
         self._scores = defaultdict(
             lambda: defaultdict(lambda: ScoreResult(history_length=history_length))
@@ -33,6 +44,7 @@ class ScoreSheet:
 
     def create_table(self):
         header = ('Test name', 'Current', 'Last', 'Best')
+        states = []
         res = []
         for test_name, test_name_result in self._scores.items():
             for tag, tag_result in test_name_result.items():
@@ -42,10 +54,15 @@ class ScoreSheet:
                     tag_result.last,
                     tag_result.best,
                 ))
-        return header, res
+                states.append(tag_result.get_state())
+        return header, res, states
 
 
 class ScoreResult:
+    """
+    Contains the score result corresponding to a single test / tag pair.
+    """
+
     def __init__(self, *, history_length=5):
         self.best = None
         self.current = None
@@ -91,3 +108,23 @@ class ScoreResult:
         values_not_none = [val for val in values if val is not None]
         if values_not_none:
             self.best = max(values_not_none)
+
+    def get_state(self):
+        try:
+            if self.current > self.best:
+                return ScoreStates.BETTER
+            elif self.current < self.best:
+                return ScoreStates.WORSE
+            return ScoreStates.UNCHANGED
+        except TypeError:
+            return ScoreStates.UNKNOWN
+
+
+class ScoreStates(Enum):
+    """
+    Possible states of the current score versus the best best score.
+    """
+    UNKNOWN = 'unknown'
+    UNCHANGED = 'unchanged'
+    BETTER = 'better'
+    WORSE = 'worse'

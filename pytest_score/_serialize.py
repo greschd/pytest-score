@@ -1,3 +1,7 @@
+"""
+Defines the function to serialize and deserialize pytest-score objects to JSON.
+"""
+
 from functools import singledispatch
 
 from ._score import ScoreSheet, ScoreResult
@@ -9,7 +13,7 @@ SCORE_RESULT_KEY = '_score_result'
 @singledispatch
 def encode(obj):
     """
-    Encodes pytest-score objects to JSON-compatible format.
+    Serializes pytest-score objects to JSON-compatible format.
     """
     raise TypeError('cannot JSONify {} object {}'.format(type(obj), obj))
 
@@ -39,6 +43,9 @@ _DECODE_LOOKUP = {
 
 
 def decode(obj):
+    """
+    Create a pytest-score object from the JSON-compatible format.
+    """
     if isinstance(obj, dict):
         for key, decode_func in _DECODE_LOOKUP.items():
             if key in obj:
