@@ -13,9 +13,11 @@ def encode(obj):
     """
     raise TypeError('cannot JSONify {} object {}'.format(type(obj), obj))
 
+
 @encode.register(ScoreSheet)
 def _(obj):
     return {SCORE_SHEET_KEY: obj.to_dict()}
+
 
 @encode.register(ScoreResult)
 def _(obj):
@@ -25,13 +27,16 @@ def _(obj):
 def _decode_score_sheet(obj):
     return ScoreSheet.from_dict(obj)
 
+
 def _decode_score_result(obj):
     return ScoreResult.from_dict(obj)
+
 
 _DECODE_LOOKUP = {
     SCORE_SHEET_KEY: _decode_score_sheet,
     SCORE_RESULT_KEY: _decode_score_result,
 }
+
 
 def decode(obj):
     if isinstance(obj, dict):

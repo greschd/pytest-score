@@ -25,9 +25,7 @@ setup(
     packages=find_packages(),
     python_requires='>=3.5',
     install_requires=['pytest>=3.1.1', 'fsc.export', 'pyyaml'],
-    extras_require={
-        'dev': ['sphinx', 'pytest']
-    },
+    extras_require={'dev': ['sphinx', 'pytest']},
     classifiers=[
         'Development Status :: 3 - Alpha',
         'Framework :: Pytest',

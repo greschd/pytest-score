@@ -1,5 +1,6 @@
 from collections import defaultdict, deque
 
+
 class ScoreSheet:
     def __init__(self, *, history_length=5):
         self._scores = defaultdict(
@@ -7,7 +8,11 @@ class ScoreSheet:
         )
 
     def to_dict(self):
-        res = {key: {k: v for k, v in val.items()} for key, val in self._scores.items()}
+        res = {
+            key: {k: v
+                  for k, v in val.items()}
+            for key, val in self._scores.items()
+        }
         return res
 
     @classmethod

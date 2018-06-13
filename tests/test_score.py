@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-
 # def test_score_fixture(testdir, score):
 #     """Make sure that pytest accepts the fixture."""
 #
@@ -22,6 +21,7 @@
 #
 #     # make sure that that we get a '0' exit code for the testsuite
 #     assert result.ret == 0
+
 
 def test_score(score, score_sheet):
     score(1., tag='bla')
