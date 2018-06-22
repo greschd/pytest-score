@@ -33,7 +33,7 @@ setup(
     python_requires='>=3.5',
     install_requires=['pytest>=3.1.1', 'fsc.export', 'py', 'jinja2'],
     extras_require={
-        'dev': ['sphinx', 'pytest'],
+        'dev': ['sphinx', 'pylint', 'yapf==0.22.0'],
     },
     classifiers=[
         'Development Status :: 3 - Alpha',

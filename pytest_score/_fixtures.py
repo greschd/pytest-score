@@ -7,9 +7,9 @@ import json
 from contextlib import contextmanager
 
 import pytest
-from fsc.export import export
+from fsc.export import export  # pylint: disable=import-error
 
-from ._score import ScoreSheet
+from ._score import ScoreSheet, Evaluator
 from ._serialize import encode, decode
 
 
@@ -59,12 +59,13 @@ def score(request, score_sheet):  # pylint: disable=redefined-outer-name
     Fixture to store a scored test.
     """
 
-    def inner(value, cutoff=None, tag=''):  # pylint: disable=missing-docstring
+    def inner(value, less_is_better=False, cutoff=None, tag=''):
         score_sheet.add_score(
-            value, test_name=_get_test_name(request), tag=tag
+            value,
+            test_name=_get_test_name(request),
+            tag=tag,
+            evaluator=Evaluator(less_is_better=less_is_better, cutoff=cutoff)
         )
-        if cutoff is not None:
-            assert value >= cutoff
 
     return inner
 

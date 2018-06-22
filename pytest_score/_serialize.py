@@ -4,10 +4,11 @@ Defines the function to serialize and deserialize pytest-score objects to JSON.
 
 from functools import singledispatch
 
-from ._score import ScoreSheet, ScoreResult
+from ._score import ScoreSheet, ScoreResult, Evaluator
 
 SCORE_SHEET_KEY = '_score_sheet'
 SCORE_RESULT_KEY = '_score_result'
+EVALUATOR_KEY = '_evaluator'
 
 
 @singledispatch
@@ -25,7 +26,12 @@ def _(obj):
 
 @encode.register(ScoreResult)
 def _(obj):
-    return {SCORE_RESULT_KEY: (obj.to_dict())}
+    return {SCORE_RESULT_KEY: obj.to_dict()}
+
+
+@encode.register(Evaluator)
+def _(obj):
+    return {EVALUATOR_KEY: obj.to_dict()}
 
 
 def _decode_score_sheet(obj):
@@ -36,9 +42,14 @@ def _decode_score_result(obj):
     return ScoreResult.from_dict(obj)
 
 
+def _decode_evaluator(obj):
+    return Evaluator.from_dict(obj)
+
+
 _DECODE_LOOKUP = {
     SCORE_SHEET_KEY: _decode_score_sheet,
     SCORE_RESULT_KEY: _decode_score_result,
+    EVALUATOR_KEY: _decode_evaluator,
 }
 
 
