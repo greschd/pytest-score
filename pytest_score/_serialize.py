@@ -2,7 +2,10 @@
 Defines the function to serialize and deserialize pytest-score objects to JSON.
 """
 
+import numbers
 from functools import singledispatch
+
+import numpy as np
 
 from ._score import ScoreSheet, ScoreResult, Evaluator
 
@@ -17,6 +20,21 @@ def encode(obj):
     Serializes pytest-score objects to JSON-compatible format.
     """
     raise TypeError('cannot JSONify {} object {}'.format(type(obj), obj))
+
+
+@encode.register(np.bool_)
+def _(obj):
+    return bool(obj)
+
+
+@encode.register(numbers.Integral)
+def _(obj):
+    return int(obj)
+
+
+@encode.register(numbers.Real)
+def _(obj):
+    return float(obj)
 
 
 @encode.register(ScoreSheet)
