@@ -124,6 +124,7 @@ class ScoreResult:
         """
         assert self.current is None, "Cannot assign a score for the same test and tag twice."
         self.current = value
+        self.evaluator.assert_sufficient(value)
 
     def rotate(self):
         """
