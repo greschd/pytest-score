@@ -3,8 +3,9 @@
 Defines the fixtures for running a scored evaluation.
 """
 
+import os
 import json
-from contextlib import contextmanager
+from contextlib import contextmanager, suppress
 
 import pytest
 from fsc.export import export  # pylint: disable=import-error
@@ -19,18 +20,23 @@ def score_sheet(request):
     """
     Creates the score sheets and saves it after the test session.
     """
-    with _store_score(save_file=_get_save_file(request)
-                      ) as score_sheet_instance:
+    with _store_score(
+        save_file=_get_save_file(request),
+        wipe_scores=request.config.option.wipe_scores
+    ) as score_sheet_instance:
         request.session._score_sheet_instance = score_sheet_instance  # pylint: disable=protected-access
         score_sheet_instance.rotate()
         yield score_sheet_instance
 
 
 @contextmanager
-def _store_score(save_file):
+def _store_score(save_file, wipe_scores):
     """
     Initializes the ScoreSheet instance on entering and saves it on exiting.
     """
+    if wipe_scores:
+        with suppress(IOError):
+            os.remove(save_file)
     try:
         with open(save_file, 'r') as in_file:
             score_sheet_instance = json.load(in_file, object_hook=decode)

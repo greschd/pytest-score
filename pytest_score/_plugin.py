@@ -6,13 +6,22 @@ import os
 import shutil
 
 import jinja2
-from fsc.export import export
+from fsc.export import export  # pylint: disable=import-error
 
 from ._score import ScoreStates
 
 
 @export
-def pytest_configure(config):
+def pytest_addoption(parser):
+    parser.addoption(
+        '--wipe-scores',
+        action='store_true',
+        help='Delete previous score results.'
+    )
+
+
+@export
+def pytest_configure(config):  # pylint: disable=missing-docstring
     config._score_html = HTMLScoreReporter(config)  # pylint: disable=protected-access
     config._score_terminal = TerminalScoreReporter(config)  # pylint: disable=protected-access
     config.pluginmanager.register(config._score_html)  # pylint: disable=protected-access
