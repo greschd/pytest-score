@@ -40,7 +40,7 @@ class HTMLScoreReporter:
     """
 
     def __init__(self, config):
-        self.save_dirname = config.rootdir.join('htmlscore')
+        self.save_dirname = str(config.rootdir.join('htmlscore'))
 
         env = jinja2.Environment(
             loader=jinja2.PackageLoader('pytest_score', 'templates')
