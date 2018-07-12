@@ -55,7 +55,7 @@ def _get_save_file(request):
     """
     Returns the path where the score file is stored.
     """
-    return request.config.rootdir.join('.pytest-score')
+    return str(request.config.rootdir.join('.pytest-score'))
 
 
 @export
