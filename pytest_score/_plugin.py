@@ -1,3 +1,7 @@
+# -*- coding: utf-8 -*-
+
+# © 2015-2018, ETH Zurich, Institut für Theoretische Physik
+# Author: Dominik Gresch <greschd@gmx.ch>
 """
 Defines the reporters to write the score report to the terminal and HTML output, and adds them to the pytest run.
 """
@@ -6,7 +10,7 @@ import os
 import shutil
 
 import jinja2
-from fsc.export import export  # pylint: disable=import-error
+from fsc.export import export
 
 from ._score import ScoreStates
 
@@ -64,8 +68,9 @@ class HTMLScoreReporter:
         Saves the HTML and CSS files for the given score sheet.
         """
         os.makedirs(self.save_dirname, exist_ok=True)
-        with open(os.path.join(self.save_dirname, 'index.html'),
-                  'w') as html_file:
+        with open(
+            os.path.join(self.save_dirname, 'index.html'), 'w'
+        ) as html_file:
             html_file.write(self._render_template(score_sheet))
         shutil.copyfile(
             self.css_path, os.path.join(self.save_dirname, 'theme.css')

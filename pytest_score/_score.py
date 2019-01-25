@@ -1,3 +1,7 @@
+# -*- coding: utf-8 -*-
+
+# © 2015-2018, ETH Zurich, Institut für Theoretische Physik
+# Author: Dominik Gresch <greschd@gmx.ch>
 """
 Defines the container classes for storing the state of the scores.
 """
@@ -215,7 +219,7 @@ class Evaluator:
         try:
             if self.better_than_op(current, best):
                 return ScoreStates.BETTER
-            elif self.better_than_op(best, current):
+            if self.better_than_op(best, current):
                 return ScoreStates.WORSE
             return ScoreStates.UNCHANGED
         except TypeError:

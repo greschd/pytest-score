@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+
+# © 2015-2018, ETH Zurich, Institut für Theoretische Physik
+# Author: Dominik Gresch <greschd@gmx.ch>
 """
 Defines the fixtures for running a scored evaluation.
 """
@@ -8,7 +11,7 @@ import json
 from contextlib import contextmanager, suppress
 
 import pytest
-from fsc.export import export  # pylint: disable=import-error
+from fsc.export import export
 
 from ._score import ScoreSheet, Evaluator
 from ._serialize import encode, decode

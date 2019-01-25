@@ -1,6 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+# © 2015-2018, ETH Zurich, Institut für Theoretische Physik
+# Author: Dominik Gresch <greschd@gmx.ch>
+
 import re
 import os
 import codecs
@@ -23,7 +26,7 @@ setup(
     author_email='greschd@gmx.ch',
     maintainer='Dominik Gresch',
     maintainer_email='greschd@gmx.ch',
-    license='GNU GPL v3.0',
+    license='Apache 2.0',
     url='https://github.com/greschd/pytest-score',
     description='A plugin to run quality (non-binary) tests with pytest.',
     long_description=read('README.md'),
@@ -33,7 +36,8 @@ setup(
     python_requires='>=3.5',
     install_requires=['pytest>=3.1.1', 'fsc.export', 'py', 'jinja2'],
     extras_require={
-        'dev': ['sphinx', 'pylint', 'yapf==0.22.0'],
+        'dev':
+        ['sphinx', 'pylint==2.1.1', 'yapf==0.25.0', 'prospector==1.1.6.2'],
     },
     classifiers=[
         'Development Status :: 3 - Alpha',
@@ -47,7 +51,7 @@ setup(
         'Programming Language :: Python :: Implementation :: CPython',
         'Programming Language :: Python :: Implementation :: PyPy',
         'Operating System :: OS Independent',
-        'License :: OSI Approved :: GNU General Public License v3 (GPLv3)',
+        'License :: OSI Approved :: Apache Software License',
     ],
     entry_points={
         'pytest11': [
