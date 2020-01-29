@@ -34,7 +34,7 @@ setup(
     include_package_data=True,
     package_data={'pytest_score': ['templates/*']},
     python_requires='>=3.5',
-    install_requires=['pytest>=3.1.1', 'fsc.export', 'py', 'jinja2'],
+    install_requires=['pytest>=3.1.1', 'fsc.export', 'py', 'jinja2', 'numpy'],
     extras_require={
         'dev':
         ['sphinx', 'pylint==2.1.1', 'yapf==0.25.0', 'prospector==1.1.6.2'],

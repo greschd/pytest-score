@@ -46,13 +46,14 @@ class HTMLScoreReporter:
     def __init__(self, config):
         self.save_dirname = str(config.rootdir.join('htmlscore'))
 
-        env = jinja2.Environment(
-            loader=jinja2.PackageLoader('pytest_score', 'templates')
-        )
-        env.globals.update(zip=zip)
         templates_dirpath = os.path.join(
             os.path.dirname(__file__), 'templates'
         )
+        env = jinja2.Environment(
+            loader=jinja2.FileSystemLoader(templates_dirpath)
+        )
+        env.globals.update(zip=zip)
+
         self.template = env.get_template('html_template.html')
         self.css_path = os.path.join(templates_dirpath, 'theme.css')
 
